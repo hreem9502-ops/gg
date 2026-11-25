@@ -1,0 +1,28 @@
+// PlantCare AI - Prisma schema
+// SQLite database storing plant scan history (My Plants)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// A saved plant analysis record ("My Plants" history)
+model PlantScan {
+  id             String   @id @default(cuid())
+  commonName     String
+  scientificName String?
+  category       String?
+  description    String?
+  isPlant        Boolean  @default(true)
+  healthStatus   String   @default("unknown") // healthy | attention | concern | notplant | unknown
+  confidence     Float?
+  source         String   @default("demo") // gemini | vision | plantid | demo
+  imageUrl       String?  // data URL of the analyzed image (max 1024px)
+  thumbUrl       String?  // small data URL thumbnail for list cards
+  analysisJson   String?  // full analysis result as JSON string
+  createdAt      DateTime @default(now())
+}

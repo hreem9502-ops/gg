@@ -1,0 +1,75 @@
+START HERE — PlantCare AI
+=========================
+
+WHAT IS THIS?
+-------------
+A complete university project package containing:
+  1. application/         the full working web application (Next.js + TypeScript + SQLite)
+  2. presentation/         15-slide PowerPoint (PPTX) + PDF version
+  3. documentation/        Project Report, Installation Guide, Speaker Notes,
+                          Student Task Distribution (all Word .docx)
+  4. screenshots/          genuine screenshots of the running application
+  5. README.md             full documentation
+  6. START_HERE.txt        this file
+
+QUICK START (5 minutes)
+-----------------------
+Step 1  Install Bun from https://bun.sh  (or use Node.js 18+ with npm)
+
+Step 2  Open a terminal inside the "application" folder of this package.
+
+Step 3  Install the dependencies:
+            bun install
+        (npm users: npm install)
+
+Step 4  Create the configuration file:
+            cp .env.example .env
+        Windows users: copy .env.example .env
+
+Step 5  Create the database:
+            bun run db:push
+        (npm users: npx prisma db push)
+
+Step 6  Start the application:
+            bun run dev
+        (npm users: npm run dev)
+
+Step 7  Open http://localhost:3000 in your browser.
+
+USING THE APP
+-------------
+- Click "Start Plant Analysis" -> upload a plant photo (JPG/JPEG/PNG/WEBP,
+  max 10 MB) or take one with the camera.
+- Click "Analyze Image" and wait for the AI result.
+- Read the Identification / Health & Disease / Care Guide tabs.
+- Click "Save to My Plants" to keep the record in history.
+- Toggle the EN / AR button for the Arabic interface.
+
+DO YOU NEED AN API KEY?
+-----------------------
+No. The application works without any key thanks to Demo Mode
+(clearly-labeled sample results). For REAL AI analysis, open .env and set:
+    GEMINI_API_KEY=your_key        (get a key at https://ai.google.dev/)
+    PLANT_ID_API_KEY=your_key      (optional, from https://plant.id/)
+API keys are only used server-side and are never exposed to the browser.
+Never share or publish your .env file.
+
+PRESENTATION & DOCUMENTS
+------------------------
+- The PowerPoint contains exactly 15 slides with speaker notes.
+  Cover slide has editable fields for university, course and instructor names.
+- Speaker scripts for each of the five students are in
+  documentation/Presentation_Speaker_Notes.docx
+- Test results and setup details are in Project_Report.docx and
+  Installation_Guide.docx.
+
+TROUBLESHOOTING
+---------------
+- "Port 3000 in use"        -> close the other app or change the port.
+- Database errors           -> run: bun run db:push
+- Camera does not open      -> allow the camera permission (needs localhost/HTTPS).
+- Analysis errors           -> check the API key in .env; the app will fall
+                              back to Demo Mode automatically.
+
+Project team: Jory Mohiuddin, Dima Sami, Rona Sharif,
+              Sadeem Al-Thaqafi, Warda Al-Barqi.
