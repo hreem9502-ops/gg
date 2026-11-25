@@ -1,9 +1,9 @@
 "use client";
 
 /**
- * PlantCare AI - bilingual context (English / Arabic).
- * English is the default interface language; Arabic can be toggled
- * from the header. Direction (LTR/RTL) follows the language.
+ * PlantCare AI - bilingual context (Arabic / English).
+ * Arabic is the default interface language (RTL); English can be toggled
+ * from the header. Direction (RTL/LTR) follows the language.
  */
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { ar, en, type TKey } from "@/lib/i18n";
@@ -19,16 +19,21 @@ interface I18nContextValue {
 
 const I18nContext = createContext<I18nContextValue | null>(null);
 
-export function I18nProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+// v2 key: Arabic became the default site language, so the preference key is
+// versioned — returning visitors get the new Arabic default instead of the
+// previously auto-persisted "en".
+const LANG_KEY = "plantcare_lang_v2";
 
-  // Restore saved preference after hydration (async to avoid cascading renders)
+export function I18nProvider({ children }: { children: React.ReactNode }) {
+  const [lang, setLangState] = useState<Lang>("ar");
+
+  // Restore an explicitly saved preference after hydration.
   useEffect(() => {
     let cancelled = false;
     Promise.resolve().then(() => {
       if (cancelled) return;
       try {
-        const saved = window.localStorage.getItem("plantcare_lang");
+        const saved = window.localStorage.getItem(LANG_KEY);
         if (saved === "ar" || saved === "en") setLangState(saved);
       } catch {
         /* localStorage unavailable */
@@ -44,7 +49,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
     try {
-      window.localStorage.setItem("plantcare_lang", lang);
+      window.localStorage.setItem(LANG_KEY, lang);
     } catch {
       /* ignore */
     }

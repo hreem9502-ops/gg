@@ -1,6 +1,7 @@
 /**
- * PlantCare AI - English / Arabic interface dictionary.
- * Arabic is optional; English is the primary interface language.
+ * PlantCare AI - Arabic / English interface dictionary.
+ * Arabic is the default interface language (RTL); English can be toggled
+ * from the header.
  */
 
 export const en = {

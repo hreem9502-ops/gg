@@ -24,18 +24,20 @@ const arabicFont = Noto_Kufi_Arabic({
 
 export const metadata: Metadata = {
   title: {
-    default: "PlantCare AI — Smart Plant Identification, Disease Detection & Care Assistant",
+    default: "PlantCare AI — مساعد ذكي للتعرف على النباتات واكتشاف أمراضها ودليل العناية",
     template: "%s · PlantCare AI",
   },
   description:
-    "Take a photo of any plant and let AI identify the species, detect visible disease symptoms, and provide a complete care guide. Academic project by Jory Mohiuddin, Dima Sami, Rona Sharif, Sadeem Al-Thaqafi and Warda Al-Barqi.",
+    "صوّر أي نبات ودع الذكاء الاصطناعي يتعرف على نوعه، يفحص صحة أوراقه ويكشف أعراض الأمراض الظاهرة، ثم يقدم لك دليلاً كاملاً للعناية — الري، الضوء، التربة والمزيد. مشروع أكاديمي لـ جوري محي الدين، ديما سامي، رونا شريف، سديم الثقفي ووردة البرقي.",
   keywords: [
     "PlantCare AI",
+    "التعرف على النباتات",
+    "أمراض النباتات",
+    "الذكاء الاصطناعي",
+    "العناية بالنباتات",
     "plant identification",
     "plant disease detection",
     "AI plant care",
-    "botany",
-    "smart agriculture",
   ],
   applicationName: "PlantCare AI",
   manifest: "/manifest.webmanifest",
@@ -74,7 +76,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
         className={`${displayFont.variable} ${bodyFont.variable} ${arabicFont.variable} antialiased bg-background text-foreground`}
       >
